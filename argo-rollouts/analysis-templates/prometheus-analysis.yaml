@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: prometheus-success-rate
+  namespace: cloudcart-system
+spec:
+  metrics:
+    - name: http-success-rate
+      interval: 10s
+      successCondition: result[0] >= 98.0
+      failureLimit: 3
+      provider:
+        prometheus:
+          address: http://prometheus.monitoring.svc:9090
+          query: |
+            (sum(rate(http_server_requests_seconds_count{status!~"5.*"}[2m])) / sum(rate(http_server_requests_seconds_count[2m]))) * 100
+
+    - name: p95-latency
+      interval: 10s
+      successCondition: result[0] <= 500.0
+      failureLimit: 3
+      provider:
+        prometheus:
+          address: http://prometheus.monitoring.svc:9090
+          query: |
+            histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket[2m])) by (le)) * 1000
+
+    - name: transaction-success-rate
+      interval: 10s
+      successCondition: result[0] >= 97.0
+      failureLimit: 2
+      provider:
+        prometheus:
+          address: http://prometheus.monitoring.svc:9090
+          query: |
+            (sum(rate(cloudcart_orders_created_total[2m])) / (sum(rate(cloudcart_orders_created_total[2m])) + sum(rate(cloudcart_orders_failed_total[2m])) + 0.00001)) * 100

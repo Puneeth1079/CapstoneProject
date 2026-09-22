@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: release-control-center-backend
+  datasource:
+    url: jdbc:h2:mem:controlcentertest;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  flyway:
+    enabled: false
+
+server:
+  port: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,prometheus,metrics"
+
+devops:
+  argocd:
+    url: http://localhost:8080
+    token: test-token
+  prometheus:
+    url: http://localhost:9090
+  kubernetes:
+    master-url: http://localhost:6443
+    namespace: default
+  github:
+    api-url: https://api.github.com
+    repo: org/capstone-gitops-platform
+    token: test-token
+  cloudcart:
+    url: http://localhost:8081

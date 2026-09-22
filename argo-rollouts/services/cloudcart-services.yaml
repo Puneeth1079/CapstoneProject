@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudcart-backend-stable
+  namespace: cloudcart-system
+  labels:
+    app: cloudcart-backend
+spec:
+  ports:
+    - name: http
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: cloudcart-backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudcart-backend-canary
+  namespace: cloudcart-system
+  labels:
+    app: cloudcart-backend
+spec:
+  ports:
+    - name: http
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: cloudcart-backend

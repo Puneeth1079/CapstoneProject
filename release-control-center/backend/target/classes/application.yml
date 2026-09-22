@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: release-control-center-backend
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/gitops_control_center}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,prometheus,metrics"
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      enabled: true
+
+devops:
+  argocd:
+    url: ${ARGOCD_URL:http://localhost:8080}
+    token: ${ARGOCD_TOKEN:}
+  prometheus:
+    url: ${PROMETHEUS_URL:http://localhost:9090}
+  kubernetes:
+    master-url: ${K8S_MASTER_URL:http://localhost:6443}
+    namespace: ${K8S_NAMESPACE:default}
+  github:
+    api-url: ${GITHUB_API_URL:https://api.github.com}
+    repo: ${GITHUB_REPO:org/capstone-gitops-platform}
+    token: ${GITHUB_TOKEN:}
+  cloudcart:
+    url: ${CLOUDCART_URL:http://localhost:8081}
+
+logging:
+  level:
+    root: INFO
+    com.gitopscontrolcenter: DEBUG
