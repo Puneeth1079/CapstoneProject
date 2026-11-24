@@ -32,6 +32,7 @@ C:\Users\PUNEETH\Desktop\Capstone Prototype\release-control-center\backend\src\m
 C:\Users\PUNEETH\Desktop\Capstone Prototype\release-control-center\backend\src\main\java\com\gitopscontrolcenter\GitOpsControlCenterApplication.java
 C:\Users\PUNEETH\Desktop\Capstone Prototype\release-control-center\backend\src\main\java\com\gitopscontrolcenter\repository\DeploymentRepository.java
 C:\Users\PUNEETH\Desktop\Capstone Prototype\release-control-center\backend\src\main\java\com\gitopscontrolcenter\entity\DoraMetricSnapshot.java
+C:\Users\PUNEETH\Desktop\Capstone Prototype\release-control-center\backend\src\main\java\com\gitopscontrolcenter\configuration\DataInitializer.java
 C:\Users\PUNEETH\Desktop\Capstone Prototype\release-control-center\backend\src\main\java\com\gitopscontrolcenter\integration\argocd\ArgoCdClient.java
 C:\Users\PUNEETH\Desktop\Capstone Prototype\release-control-center\backend\src\main\java\com\gitopscontrolcenter\service\interfaces\DeploymentService.java
 C:\Users\PUNEETH\Desktop\Capstone Prototype\release-control-center\backend\src\main\java\com\gitopscontrolcenter\controller\DoraController.java
